@@ -1,0 +1,70 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/classify/index",
+			"style": {
+				"navigationBarTitleText": "分类"
+			}
+		},
+		{
+			"path": "pages/short-film/index",
+			"style": {
+				"navigationBarTitleText": "短片"
+			}
+		},
+		{
+			"path": "pages/my/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#000000",
+		 // #ifdef APP-PLUS 
+		"fontSize": "13px",
+		// #endif
+		// #ifndef APP-PLUS
+		"fontSize": "26rpx",
+		// #endif
+		"selectedColor": "#007aff",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/images/tabbar/Home.png",
+				"selectedIconPath": "static/images/tabbar/xuanzhong.png"
+			},
+			{
+				"pagePath": "pages/classify/index",
+				"text": "分类",
+				"iconPath": "static/images/tabbar/Document.png",
+				"selectedIconPath": "static/images/tabbar/Documentyx.png"
+
+			},
+			{
+				"pagePath": "pages/short-film/index",
+				"text": "短片",
+				"selectedIconPath": "static/images/tabbar/Profilexuanzhong.png",
+				"iconPath": "static/images/tabbar/Profile.png"
+			},
+			{
+				"pagePath": "pages/my/index",
+				"text": "我的",
+				"selectedIconPath": "static/images/tabbar/Profilexuanzhong.png",
+				"iconPath": "static/images/tabbar/Profile.png"
+			}
+		]
+	}
+}
