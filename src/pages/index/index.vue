@@ -10,10 +10,16 @@
     >
       <swiper-item v-for="(item, index) in swiperList" :key="index">
         <view class="swiper-item">
-          <image class="swiper-img" :src="item.banner"></image>
+          <image class="swiper-img" mode="scaleToFill" :src="item.banner"></image>
         </view>
       </swiper-item>
     </swiper>
+    <view class="nav-list">
+      <view class="nav-item" v-for="(item, index) in navList" :key="index">
+        <i :class="['iconfont', item.icon]"></i>
+        <text>{{ item.label }}</text>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -27,7 +33,13 @@ export default {
       autoplay: true,
       interval: 2000,
       duration: 500,
-      swiperList: []
+      swiperList: [],
+      navList: [
+        { label: '热映中', icon: 'icon-video' },
+        { label: '高分榜', icon: 'icon-level' },
+        { label: '奖项', icon: 'icon-trophy' },
+        { label: '那年今日', icon: 'icon-date' },
+      ],
     };
   },
   onLoad() {
@@ -44,8 +56,27 @@ export default {
 
 <style lang="less" scoped>
 .content {
-  .icon {
-    color: red;
+  padding: 30rpx;
+}
+.swiper {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 16rpx;
+    overflow: hidden;
+  &-img {
+    width: 100%;
+    height: 100%;
+  }
+  &-item {
+    width: 100%;
+    height: 100%;
+  }
+}
+.nav-list {
+  display: flex;
+  .nav-item{
+    flex: 1;
+    text-align: center;
   }
 }
 </style>
