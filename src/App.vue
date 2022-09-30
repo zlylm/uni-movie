@@ -14,4 +14,13 @@ export default {
 
 <style>
 @import "./static/iconfont/iconfont.css";
+page {
+  width: 100%;
+  height: 100%;
+}
+.container {
+  background-color: #f5f5f5;
+  width: 100%;
+  height: 100%;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <view class="content">
+  <view class="container">
     <swiper
       class="swiper"
       circular
@@ -54,8 +54,8 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-.content {
+<style lang="scss" scoped>
+.container {
   padding: 30rpx;
 }
 .swiper {
@@ -74,9 +74,29 @@ export default {
 }
 .nav-list {
   display: flex;
+  background-color: #fff;
+  margin: $uni-spacing-col-base 0;
+  padding: 30rpx 0;
+
   .nav-item{
     flex: 1;
     text-align: center;
+    i {
+      width: 84rpx;
+      height: 84rpx;
+      line-height: 84rpx;
+      display: inline-block;
+      font-size: 46rpx;
+      border-radius: $uni-border-radius-lg;
+      &:first-child {
+        color: #f8a52d;
+        background: rgba(248,165,45,.15);
+      }
+    }
+    text {
+      display: block;
+      font-size: 26rpx;
+    }
   }
 }
 </style>
