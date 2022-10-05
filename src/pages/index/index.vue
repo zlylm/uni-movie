@@ -1,5 +1,13 @@
 <template>
   <view class="container">
+    <!-- <view class="top-bg">
+      <view class="mengban"></view>
+      <image mode="scaleToFill"  class="img" :src="swiperList[swiperIndex] && swiperList[swiperIndex].banner"></image>
+    </view> -->
+    <view class="search">
+      <i class="iconfont icon-search"></i>
+      <text>请输入影片名称</text>
+    </view>
     <swiper
       class="swiper"
       circular
@@ -7,6 +15,7 @@
       :autoplay="autoplay"
       :interval="interval"
       :duration="duration"
+      @change="swiperChange"
     >
       <swiper-item v-for="(item, index) in swiperList" :key="index">
         <view class="swiper-item">
@@ -20,8 +29,14 @@
         <text>{{ item.label }}</text>
       </view>
     </view>
-    <movie-box>
-      <template v-for="(item, index) in hotList" :key="index">
+    <movie-box title="热门推荐" :count="hotObj.total || 0">
+      <template v-for="(item, index) in hotObj.data" :key="index">
+        <movie-item :detail="item"></movie-item>
+      </template>
+    </movie-box>
+
+    <movie-box title="那年今日" :count="prevYear.total || 0">
+      <template v-for="(item, index) in prevYear.data" :key="index">
         <movie-item :detail="item"></movie-item>
       </template>
     </movie-box>
@@ -45,25 +60,35 @@ export default {
       interval: 2000,
       duration: 500,
       swiperList: [],
-      hotList:[],
+      swiperIndex: null,
+      hotObj:{},
+      prevYear: {},
       navList: [
         { label: '热映中', icon: 'icon-video' },
         { label: '高分榜', icon: 'icon-level' },
         { label: '奖项', icon: 'icon-trophy' },
         { label: '那年今日', icon: 'icon-date' },
       ],
+      
     };
   },
   onLoad() {
+
     console.log(111);
     homeAllData().then(res => {
       console.log(res);
-      let { swiper, theater } = res;
+      let { swiper, theater, today } = res;
       this.swiperList = swiper;
-      this.hotList = theater.data;
+      this.hotObj = theater;
+      this.prevYear = today
     });
   },
-  methods: {}
+  methods: {
+    swiperChange(e) {
+      console.log(e);
+      this.swiperIndex = e.detail.current
+    }
+  }
 };
 </script>
 
@@ -71,6 +96,47 @@ export default {
 .container {
   padding: 30rpx;
   box-sizing: border-box;
+  padding-bottom: 100rpx;
+  height: auto;
+  position: relative;
+  .search {
+    background: #fff;
+    border-radius: $uni-border-radius-lg;
+    margin-bottom: 20rpx;
+    height: 80rpx;
+    box-sizing: border-box;
+    padding: 0 20rpx;
+    font-size: 30rpx;
+    display: flex;
+    align-items: center;
+    color: #666;
+    .iconfont {
+      margin-right: 12rpx;
+    }
+  }
+  .top-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 400rpx;
+    overflow: hidden;
+    z-index: 99;
+    
+    .img {
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(25px);
+    }
+    .mengban {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      
+    }
+  }
 }
 .swiper {
   width: 100%;
@@ -126,5 +192,8 @@ export default {
       margin-top: 10rpx;
     }
   }
+}
+.movie-box {
+  margin-bottom: 20rpx;
 }
 </style>

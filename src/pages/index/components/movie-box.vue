@@ -1,8 +1,8 @@
 <template>
   <view class="movie-box">
     <view class="movie-box-top">
-      <view class="title">正在热映</view>
-      <view class="right">25部
+      <view class="title">{{ title }}</view>
+      <view class="right">{{ count }}部
 
         <i class="iconfont icon-arrow-right"></i>
       </view>
@@ -14,7 +14,16 @@
 </template>
 <script>
 export default {
-  
+  props: {
+    title: {
+      type: String,
+      default: "每日推荐"
+    },
+    count: {
+      type: Number,
+      default: 0
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
