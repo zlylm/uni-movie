@@ -4,7 +4,7 @@
       <view class="title">{{ title }}</view>
       <view class="right">{{ count }}部
 
-        <i class="iconfont icon-arrow-right"></i>
+        <text class="iconfont icon-arrow-right"></text>
       </view>
     </view>
     <scroll-view class="scroll-view" scroll-x="true">
@@ -59,9 +59,9 @@ export default {
   .scroll-view {
     width: 100%;
     white-space: nowrap;
-    & ::v-deep .movie-item {
-      margin-right: 20rpx;
-    }
+    // & ::v-deep .movie-item {
+    //   margin-right: 20rpx;
+    // }
   }
 }
 </style>

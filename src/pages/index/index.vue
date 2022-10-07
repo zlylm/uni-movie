@@ -1,5 +1,6 @@
 <template>
   <view class="container">
+    <Skeleton v-if="gujia"></Skeleton>
     <view class="top-bg">
       <view class="mengban"></view>
       <image mode="scaleToFill"  class="img" :src="swiperList[swiperIndex] && swiperList[swiperIndex].banner"></image>
@@ -25,19 +26,19 @@
     </swiper>
     <view class="nav-list">
       <view class="nav-item" v-for="(item, index) in navList" :key="index">
-        <i :class="['iconfont', item.icon]"></i>
+        <text :class="['iconfont', item.icon]"></text>
         <text>{{ item.label }}</text>
       </view>
     </view>
     <movie-box title="热门推荐" :count="hotObj.total || 0">
       <template v-for="(item, index) in hotObj.data" :key="index">
-        <movie-item :detail="item"></movie-item>
+        <movie-item :detail="item" style="margin-right:20rpx;"></movie-item>
       </template>
     </movie-box>
 
     <movie-box title="那年今日" :count="prevYear.total || 0">
       <template v-for="(item, index) in prevYear.data" :key="index">
-        <movie-item :detail="item"></movie-item>
+        <movie-item :detail="item" style="margin-right:20rpx;"></movie-item>
       </template>
     </movie-box>
   </view>
@@ -47,13 +48,16 @@
 import { homeAllData } from "@/api/index";
 import MovieBox from "./components/movie-box.vue";
 import MovieItem from "@/components/movie-item.vue";
+import Skeleton from "./components/skeleton.vue";
 export default {
   components: {
     MovieBox,
-    MovieItem
+    MovieItem,
+    Skeleton
   },
   data() {
     return {
+      gujia: true,
       title: "Hello",
       indicatorDots: true,
       autoplay: true,
@@ -73,14 +77,13 @@ export default {
     };
   },
   onLoad() {
-
-    console.log(111);
     homeAllData().then(res => {
       console.log(res);
       let { swiper, theater, today } = res;
       this.swiperList = swiper;
       this.hotObj = theater;
       this.prevYear = today
+      this.gujia = false;
     });
   },
   methods: {
@@ -163,7 +166,7 @@ export default {
   .nav-item{
     flex: 1;
     text-align: center;
-    i {
+    .iconfont {
       width: 80rpx;
       height: 80rpx;
       line-height: 80rpx;
@@ -171,19 +174,19 @@ export default {
       font-size: 46rpx;
       border-radius: $uni-border-radius-lg;
     }
-    &:nth-child(1) > i {
+    &:nth-child(1) > .iconfont {
      color: #f8a52d;
         background: rgba(248,165,45,.15);
     }
-    &:nth-child(2) > i {
+    &:nth-child(2) > .iconfont {
       color: #ff4f4d;
       background: rgba(255,79,77,.15);
     }
-    &:nth-child(3) > i {
+    &:nth-child(3) > .iconfont {
       color: #41acff;
       background: rgba(65,172,255,.15);
     }
-    &:nth-child(4) > i {
+    &:nth-child(4) > .iconfont {
       color: #916dff;
       background: rgba(145,109,255,.15);
     }

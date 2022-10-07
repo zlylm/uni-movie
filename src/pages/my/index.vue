@@ -1,10 +1,12 @@
 <template>
   <view>我的</view>
+  
 </template>
 
 <script>
-export default {
 
+export default {
+  
 }
 </script>
 
