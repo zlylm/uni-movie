@@ -1,9 +1,9 @@
 <template>
   <view class="container">
-    <!-- <view class="top-bg">
+    <view class="top-bg">
       <view class="mengban"></view>
       <image mode="scaleToFill"  class="img" :src="swiperList[swiperIndex] && swiperList[swiperIndex].banner"></image>
-    </view> -->
+    </view>
     <view class="search">
       <i class="iconfont icon-search"></i>
       <text>请输入影片名称</text>
@@ -85,7 +85,6 @@ export default {
   },
   methods: {
     swiperChange(e) {
-      console.log(e);
       this.swiperIndex = e.detail.current
     }
   }
@@ -99,8 +98,9 @@ export default {
   padding-bottom: 100rpx;
   height: auto;
   position: relative;
+  z-index: 1;
   .search {
-    background: #fff;
+    background: rgba(255,255,255);
     border-radius: $uni-border-radius-lg;
     margin-bottom: 20rpx;
     height: 80rpx;
@@ -119,14 +119,14 @@ export default {
     top: 0;
     left: 0;
     width: 100%;
-    height: 400rpx;
+    height: 600rpx;
     overflow: hidden;
-    z-index: 99;
+    z-index: -1;
     
     .img {
       width: 100%;
       height: 100%;
-      backdrop-filter: blur(25px);
+      
     }
     .mengban {
       position: absolute;
@@ -134,7 +134,8 @@ export default {
       left: 0;
       width: 100%;
       height: 100%;
-      
+      backdrop-filter: blur(25px);
+      z-index: 1;
     }
   }
 }
