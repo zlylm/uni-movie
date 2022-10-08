@@ -1,6 +1,7 @@
 <template>
   <view class="container">
-    <Skeleton v-if="gujia"></Skeleton>
+    <!-- <Skeleton v-if="gujia"></Skeleton> -->
+    <SkeletonTwo v-if="gujia"></SkeletonTwo>
     <view class="top-bg">
       <view class="mengban"></view>
       <image mode="scaleToFill"  class="img" :src="swiperList[swiperIndex] && swiperList[swiperIndex].banner"></image>
@@ -49,11 +50,13 @@ import { homeAllData } from "@/api/index";
 import MovieBox from "./components/movie-box.vue";
 import MovieItem from "@/components/movie-item.vue";
 import Skeleton from "./components/skeleton.vue";
+import SkeletonTwo from "./components/skeleton-two.vue";
 export default {
   components: {
     MovieBox,
     MovieItem,
-    Skeleton
+    Skeleton,
+    SkeletonTwo
   },
   data() {
     return {
