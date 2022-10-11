@@ -1,4 +1,4 @@
-const BASE_URL = "https://iot.xmnengjia.com"
+const BASE_URL = "https://test-h5-api.ixook.com"
 
 const DEFAULT_HEADER = {
 	'content-type': 'application/x-www-form-urlencoded;charset=utf-8',

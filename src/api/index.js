@@ -2,7 +2,14 @@ import Request from './request.js';
 
 export function homeAllData() {
 	return Request({
-		url: 'https://test-h5-api.ixook.com/index',
+		url: '/index',
+		method: 'get'
+	})
+}
+
+export function movieDetail(id) {
+	return Request({
+		url: `/movies/${id}`,
 		method: 'get'
 	})
 }

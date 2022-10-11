@@ -1,11 +1,11 @@
 <template>
-  <view class="movie-item">
+  <view class="movie-item" @click="itemClick">
     <view class="movie-item-top">
-      <image mode="aspectFill" :src="detail.poster"></image>
-      <text class="pinfen">{{ detail.rating }}分</text>
+      <image mode="aspectFill" :src="detail[`${imgKey}`]"></image>
+      <text v-if="isRating" class="pinfen">{{ detail.rating }}分</text>
       <text v-if="isType" class="type">{{ detail.category }}</text>
     </view>
-    <text class="title">{{ detail.title }}</text>
+    <text class="title">{{ detail[`${titleKey}`] }}</text>
   </view>
 </template>
 <script>
@@ -18,6 +18,25 @@ export default {
     isType: {
       type: Boolean,
       default: false
+    },
+    isRating: {
+      type: Boolean,
+      default: false
+    },
+    imgKey: {
+      type: String,
+      default: 'poster'
+    },
+    titleKey: {
+      type: String,
+      default: 'title'
+    }
+  },
+  methods: {
+    itemClick() {
+      uni.navigateTo({
+        url: '/pages/movie-detail/index?id=' +　this.detail.id
+      })
     }
   }
 }
