@@ -1,6 +1,6 @@
 <template>
     <view class="page">
-        <view class="page-top" :style="{background: detail.bgcolor}">
+        <view class="page-top" :style="infoStyle">
             <view class="m-info-top">
                 <view class="img-box">
                     <image class="img" src="https://img.ixook.com/movie/Fi1MjeXVhaLF7A0XMWlEawyxolcK@public"></image>
@@ -45,6 +45,7 @@
 </template>
 <script>
 import { movieDetail } from "@/api/index";
+import { set16ToRgb } from "@/utils";
 import MovieBox from "@/components/movie-box.vue";
 import MovieItem from "@/components/movie-item.vue";
 export default {
@@ -69,6 +70,11 @@ export default {
         if (this.detail.countries) {
             return this.detail.countries.join("-") + "-" + this.detail.year
         }
+      },
+      infoStyle: function() {
+        return {
+          background: `${set16ToRgb(this.detail.bgcolor, 0.8)}`
+        }
       }
     },
     methods: {
@@ -82,97 +88,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.page-top {
-    padding: 20rpx;
-    view {
-        box-sizing: border-box;
-    }
-}
-.m-info-top {
-  display: flex;
-  flex-wrap: nowrap;
-  .img-box {
-    width: 200rpx;
-    height: 280rpx;
-    overflow: hidden;
-    margin-right: 20rpx;
-    border-radius: $uni-border-radius-lg;
-    .img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-  }
-  &-right {
-    flex: 1;
-    &>view {
-        width: 100%;
-    }
-    &>view:first-child {
-        font-size: 40rpx;
-    }
-    &>view:nth-child(2) {
-        margin: 20rpx 0;
-        font-size: 28rpx;
-    }
-    &>view:nth-child(3) {
-        font-size: 26rpx;
-    }
-    &>view:last-child {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        margin-top: 20rpx;
-        &>view {
-            width: 45%;
-            padding: 10rpx;
-            background-color: rgba(0,0,0,.25);
-            color: #fff;
-            text-align: center;
-            font-size: 24rpx;
-            border-radius: $uni-border-radius-lg;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            .iconfont {
-                margin-right: 6rpx;
-            }
-        }
-    }
-  }
-}
-.tag-list {
-    margin: 20rpx 0;
-    .tag-item {
-        background-color: rgba(0,0,0,.25);
-        padding: 12rpx 24rpx;
-        display: inline-block;
-        margin: 10rpx;
-        font-size: 24rpx;
-        color: #fff;
-        border-radius: 24rpx;
-    }
-}
-.type-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    
-    line-height: 40rpx;
-    background-color: rgba(0,0,0,.25);
-    margin: 20rpx 0;
-    .iconfont {
-        font-size: 24rpx;
-    }
-    &>view {
-        font-size: 28rpx;
-    }
-}
-.juqing-content {
-    font-size: 28rpx;
-    
-    line-height: 40rpx;
-}
-
+@import 'index.scss';
 </style>
