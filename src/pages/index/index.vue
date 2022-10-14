@@ -47,7 +47,7 @@
 
 <script>
 import { homeAllData } from "@/api/index";
-import MovieBox from "./components/movie-box.vue";
+import MovieBox from "@/components/movie-box.vue";
 import MovieItem from "@/components/movie-item.vue";
 import Skeleton from "./components/skeleton.vue";
 import SkeletonTwo from "./components/skeleton-two.vue";

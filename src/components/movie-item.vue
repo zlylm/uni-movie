@@ -1,11 +1,12 @@
 <template>
   <view class="movie-item" @click="itemClick">
     <view class="movie-item-top">
-      <image mode="aspectFill" :src="detail[`${imgKey}`]"></image>
+      <image class="img" mode="aspectFill" :src="detail[`${imgKey}`]"></image>
       <text v-if="isRating" class="pinfen">{{ detail.rating }}分</text>
       <text v-if="isType" class="type">{{ detail.category }}</text>
     </view>
     <text class="title">{{ detail[`${titleKey}`] }}</text>
+    <text class="dec" v-if="decKey">{{ detail[`${decKey}`] }}</text>
   </view>
 </template>
 <script>
@@ -30,6 +31,10 @@ export default {
     titleKey: {
       type: String,
       default: 'title'
+    },
+    decKey: {
+      type: String,
+      default: null
     }
   },
   methods: {
@@ -80,6 +85,10 @@ export default {
     white-space: nowrap;
     text-overflow: ellipsis;
     padding-top: 6rpx;
+  }
+  .dec {
+    display: block;
+    font-size: 28rpx;
   }
 }
 </style>

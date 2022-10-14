@@ -1,3 +1,4 @@
+
 .page-top {
   padding: 20rpx;
   view {
@@ -83,11 +84,19 @@ color: #fff;
       font-size: 24rpx;
   }
   &>view {
-      font-size: 28rpx;
+    font-size: 24rpx;
+      &:first-child {
+        font-size: 30rpx;
+      }
   }
 }
 .juqing-content {
   font-size: 28rpx;
   color: #fff;
   line-height: 40rpx;
+}
+
+.page-other {
+  background-color: #f8f8f8;
+  padding: 20rpx;
 }

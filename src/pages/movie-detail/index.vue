@@ -35,11 +35,11 @@
                     <text class="iconfont icon-arrow-right"></text>
                 </view>
             </view>
-            <movie-box :isTop="false">
-                <template v-for="(item, index) in detail.cast" :key="index">
-                    <movie-item imgKey="avatar" titleKey="name" :detail="item" style="margin-right:20rpx;"></movie-item>
-                </template>
-            </movie-box>
+            <yan-yuan :list="detail.cast"></yan-yuan>
+        </view>
+        <view class="page-other">
+            <xiang-ce :list="detail.photos"></xiang-ce>
+            <Alike style="margin: 20rpx 0;" :list="detail.like_movies"></Alike>
         </view>
     </view>
 </template>
@@ -48,10 +48,16 @@ import { movieDetail } from "@/api/index";
 import { set16ToRgb } from "@/utils";
 import MovieBox from "@/components/movie-box.vue";
 import MovieItem from "@/components/movie-item.vue";
+import YanYuan from "./components/yan-yuan.vue";
+import XiangCe from "./components/xiang-ce.vue";
+import Alike from "./components/alike.vue";
 export default {
     components: {
         MovieBox,
         MovieItem,
+        YanYuan,
+        XiangCe,
+        Alike
     },
     data () {
         return {
