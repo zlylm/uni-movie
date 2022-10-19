@@ -6,7 +6,7 @@
       <view class="mengban"></view>
       <image mode="scaleToFill"  class="img" :src="swiperList[swiperIndex] && swiperList[swiperIndex].banner"></image>
     </view>
-    <view class="search">
+    <view class="search weixin">
       <i class="iconfont icon-search"></i>
       <text>请输入影片名称</text>
     </view>
@@ -88,6 +88,14 @@ export default {
       this.prevYear = today
       this.gujia = false;
     });
+    uni.getSystemInfo({
+      success: function (res) {
+        console.log(res.statusBarHeight, res.cameraAuthorized)
+      }
+    });
+    let info = uni.getMenuButtonBoundingClientRect()
+    console.log(info);
+
   },
   methods: {
     swiperChange(e) {
@@ -105,6 +113,9 @@ export default {
   height: auto;
   position: relative;
   z-index: 1;
+  /* #ifdef  MP-WEIXIN */
+  padding-top: var(--status-bar-height);
+  /* #endif */
   .search {
     background: rgba(255,255,255);
     border-radius: $uni-border-radius-lg;
@@ -120,6 +131,13 @@ export default {
       margin-right: 12rpx;
     }
   }
+  /* #ifdef  MP-WEIXIN */
+  .search.weixin {
+    height: 60rpx;
+    width: calc(100% - 200rpx);
+    border-radius: 50rpx;
+  }
+  /* #endif */
   .top-bg {
     position: absolute;
     top: 0;
