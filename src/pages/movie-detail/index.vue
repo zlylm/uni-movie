@@ -1,9 +1,10 @@
 <template>
     <view class="page">
+        <top-title :style="{...infoStyle, opacity: opacity}" :titleVal="detail.title" :img="miniImg"></top-title>
         <view class="page-top" :style="infoStyle">
             <view class="m-info-top">
                 <view class="img-box">
-                    <image class="img" src="https://img.ixook.com/movie/Fi1MjeXVhaLF7A0XMWlEawyxolcK@public"></image>
+                    <image class="img" :src="detail.poster.small"></image>
                 </view>
                 
                 <view class="m-info-top-right">
@@ -45,29 +46,33 @@
 </template>
 <script>
 import { movieDetail } from "@/api/index";
-import { set16ToRgb } from "@/utils";
+import { set16ToRgb, debounce } from "@/utils";
 import MovieBox from "@/components/movie-box.vue";
 import MovieItem from "@/components/movie-item.vue";
 import YanYuan from "./components/yan-yuan.vue";
 import XiangCe from "./components/xiang-ce.vue";
 import Alike from "./components/alike.vue";
+import TopTitle from "./components/top-title.vue";
 export default {
     components: {
         MovieBox,
         MovieItem,
         YanYuan,
         XiangCe,
-        Alike
+        Alike,
+        TopTitle
     },
     data () {
         return {
-            detail: {}
+            detail: {},
+            opacity: 0, // 缩略导航 透明度
+            timer: null
         }
     },
     onLoad: function (option) {
-		console.log(option.id); 
+		  console.log(option.id); 
         this.getDetail(option.id)
-	},
+	  },
     computed: {
       genresStr: function() {
         return this.detail.genres && this.detail.genres.join("/")
@@ -81,6 +86,9 @@ export default {
         return {
           background: `${set16ToRgb(this.detail.bgcolor, 0.8)}`
         }
+      },
+      miniImg: function() {
+        return this.detail && this.detail.poster.small
       }
     },
     methods: {
@@ -89,7 +97,28 @@ export default {
             console.log(res);
                 this.detail = res;
            }) 
+        },
+        renderTop(e) {
+          console.log(e);
+          
+          let top = e.scrollTop;
+          if (top > 30 && top < 80) {
+            this.opacity = 0.6
+          } else if (top > 100) {
+            this.opacity = 1
+          } else {
+            this.opacity = 0
+          }
         }
+    },
+    onPageScroll(e) {
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      this.timer = setTimeout(() => {
+        this.renderTop(e)
+      }, 120)
+
     }
 }
 </script>

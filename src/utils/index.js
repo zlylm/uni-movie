@@ -18,3 +18,13 @@ export function set16ToRgb(str, tm = 1){
   //  'rgba(' + arr.join(",")  + '' + ')';
    return `rgba(${arr.join(",")}, ${tm})`
 }
+
+export function debounce(fn, wait) {
+  let timer = null;
+  return function() {
+    if (timer != null) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(fn, wait)
+  }
+}
