@@ -26,7 +26,7 @@
       </swiper-item>
     </swiper>
     <view class="nav-list">
-      <view class="nav-item" v-for="(item, index) in navList" :key="index">
+      <view class="nav-item" v-for="(item, index) in navList" :key="index" @click="navClick(item.url)">
         <text :class="['iconfont', item.icon]"></text>
         <text>{{ item.label }}</text>
       </view>
@@ -71,8 +71,8 @@ export default {
       hotObj:{},
       prevYear: {},
       navList: [
-        { label: '热映中', icon: 'icon-video' },
-        { label: '高分榜', icon: 'icon-level' },
+        { label: '热映中', icon: 'icon-video', url: '/pages/well-received/index' },
+        { label: '高分榜', icon: 'icon-level', url: '/pages/top-fen/index' },
         { label: '奖项', icon: 'icon-trophy' },
         { label: '那年今日', icon: 'icon-date' },
       ],
@@ -88,18 +88,25 @@ export default {
       this.prevYear = today
       this.gujia = false;
     });
-    uni.getSystemInfo({
-      success: function (res) {
-        console.log(res.statusBarHeight, res.cameraAuthorized)
-      }
-    });
-    let info = uni.getMenuButtonBoundingClientRect()
-    console.log(info);
+    // uni.getSystemInfo({
+    //   success: function (res) {
+    //     console.log(res.statusBarHeight, res.cameraAuthorized)
+    //   }
+    // });
+    // let info = uni.getMenuButtonBoundingClientRect()
+    // console.log(info);
 
   },
   methods: {
     swiperChange(e) {
       this.swiperIndex = e.detail.current
+    },
+    navClick(url) {
+      if (url) {
+        uni.navigateTo({
+          url
+        })
+      }
     }
   }
 };

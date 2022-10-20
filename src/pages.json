@@ -30,6 +30,18 @@
 			"style": {
 				"navigationBarTitleText": "影片详情"
 			}
+    },
+    {
+			"path": "pages/well-received/index",
+			"style": {
+				"navigationBarTitleText": "正在热映"
+			}
+    },
+    {
+			"path": "pages/top-fen/index",
+			"style": {
+				"navigationBarTitleText": "TOP 100"
+			}
 		}
 	],
 	"globalStyle": {

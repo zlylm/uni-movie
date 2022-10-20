@@ -1,7 +1,7 @@
 const BASE_URL = "https://test-h5-api.ixook.com"
 
 const DEFAULT_HEADER = {
-	'content-type': 'application/x-www-form-urlencoded;charset=utf-8',
+	'content-type': 'application/json;charset=UTF-8',
 }
 
 const TIMEOUT = 5000
