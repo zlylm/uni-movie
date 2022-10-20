@@ -27,3 +27,10 @@ export function topList(param) {
     method: 'get',
 	})
 }
+// 短片
+export function getVideos(param) {
+	return Request({
+		url: `/videos?rder=&page=${param.page}&per_page=${param.per_page}`,
+    method: 'get',
+	})
+}
