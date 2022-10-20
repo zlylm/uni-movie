@@ -114,7 +114,7 @@ export default {
   position: relative;
   z-index: 1;
   /* #ifdef  MP-WEIXIN */
-  padding-top: var(--status-bar-height);
+  padding-top: calc(var(--status-bar-height) + 80rpx);
   /* #endif */
   .search {
     background: rgba(255,255,255);
@@ -134,8 +134,12 @@ export default {
   /* #ifdef  MP-WEIXIN */
   .search.weixin {
     height: 60rpx;
-    width: calc(100% - 200rpx);
+    width: calc(100% - 220rpx);
     border-radius: 50rpx;
+    position: fixed;
+    left: 16rpx;
+    top: var(--status-bar-height);
+    z-index: 2;
   }
   /* #endif */
   .top-bg {
