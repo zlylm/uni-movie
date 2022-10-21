@@ -4,11 +4,12 @@
       <view class="content">
         <text class="title">{{ item.title }}</text>
         <text class="count">{{ item.play_count }} 次播放</text>
-        <text class="time">{{ item.duration }}</text>
-        <image lazy-load class="img" :src="item.poster"></image>
+        <!-- <text class="time">{{ item.duration }}</text> -->
+        <!-- <image lazy-load class="img" :src="item.poster"></image>
         <view class="play">
           <text class="iconfont icon-play"></text>
-        </view>
+        </view> -->
+        <video ref="video-list" :id="`film-video-${index}`" @play="changePlay($event, index)" class="video" :poster="item.poster" :src="item.sources[0].url"></video>
       </view>
       <view class="user">
         <view class="info">
@@ -31,7 +32,8 @@ export default {
     return {
       listData: [],
       page: 1,
-      isBottom: false
+      isBottom: false,
+      timer: null,
     };
   },
   onLoad() {
@@ -44,6 +46,15 @@ export default {
     }
   },
   methods: {
+    changePlay(e, index) {
+      console.log();
+      this.$refs['video-list'].forEach((item, idx) => {
+        if (idx != index) {
+          let id = `film-video-${idx}`
+          uni.createVideoContext(id).pause(); //暂停视频播放事件
+        }
+      })
+    },
     getList() {
       let data = {
         page: this.page,
@@ -56,8 +67,33 @@ export default {
           this.isBottom = true
         }
       });
+    },
+    stopNoView() {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          
+        } else {
+          console.log(entries[0]);
+        }
+      }, { threshold: .2 });
+      console.log(observer);
+      this.$refs['video-list'].forEach((item, idx) => {
+        let id = `film-video-${idx}`
+        // uni.createVideoContext(id).pause(); //暂停视频播放事件
+        console.log(uni.createSelectorQuery().select(`#${id}`));
+        
+        // observer.observe(uni.createVideoContext(id))
+      })
     }
-  }
+  },
+  // onPageScroll(e) {
+  //     if (this.timer) {
+  //       clearTimeout(this.timer)
+  //     }
+  //     this.timer = setTimeout(() => {
+  //       this.stopNoView()
+  //     }, 500)
+  // }
 }
 </script>
 
@@ -100,8 +136,8 @@ export default {
     }
     .count {
       position: absolute;
-      bottom: 40rpx;
-      left: 20rpx;
+      top: 20rpx;
+      right: 20rpx;
     }
     .time {
       position: absolute;
@@ -112,6 +148,9 @@ export default {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+    .video {
+      width: 100%;
     }
   }
   .user {
