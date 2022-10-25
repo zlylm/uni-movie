@@ -1,5 +1,14 @@
 import Request from './request.js';
 
+function joinUrlParam(urlStr, params) {
+  let url = urlStr + "?"
+  Object.keys(params).forEach(key => {
+    url = url + `${key}=${params[key]}&`
+  })
+  return url
+}
+
+
 export function homeAllData() {
 	return Request({
 		url: '/index',
@@ -38,6 +47,12 @@ export function getVideos(param) {
 export function getCategories(param) {
 	return Request({
 		url: `/categories`,
+    method: 'get',
+	})
+}
+export function getMovies(param) {
+	return Request({
+		url: joinUrlParam(`/movies`, param),
     method: 'get',
 	})
 }
