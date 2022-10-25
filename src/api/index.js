@@ -34,3 +34,10 @@ export function getVideos(param) {
     method: 'get',
 	})
 }
+// 分类菜单数据
+export function getCategories(param) {
+	return Request({
+		url: `/categories`,
+    method: 'get',
+	})
+}
