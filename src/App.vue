@@ -52,4 +52,7 @@ page {
   .page-view {
     padding: 30rpx;
   }
+  view {
+    box-sizing: border-box;
+  }
 </style>
