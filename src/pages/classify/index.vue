@@ -1,5 +1,6 @@
 <template>
   <view class="">
+    <skeleton v-if="gujia"></skeleton>
     <view class="top">
       <type-view :list="categories" :selIndex="1" setKey="category" @change="typeChange"></type-view>
       <type-view :list="genreList" setKey="genre" @change="typeChange"></type-view>
@@ -15,18 +16,21 @@
 </template>
 
 <script>
+import skeleton from "./components/skeleton.vue";
 import TypeView from "./components/type-view.vue";
 import MovieItem from "@/components/movie-item.vue";
 import { getCategories, getMovies } from "@/api/index";
-import { onMounted, reactive, ref, toRefs, toRaw } from "vue";
+import { onMounted, reactive, ref, toRefs, toRef, toRaw } from "vue";
 import { onReachBottom } from "@dcloudio/uni-app";
 export default {
   components: {
     TypeView,
-    MovieItem
+    MovieItem,
+    skeleton
   },
   setup() {
     const isBottom = ref(false);
+    const gujia = ref(true);
     const search = reactive({ // 搜索条件
       page: 1,
       per_page: 20,
@@ -52,6 +56,7 @@ export default {
           result.categories = categories
           result.genreList = categories[1]?categories[1].children:[]
         }
+        gujia.value = false
       })
     }
     // 获取电影列表
@@ -87,6 +92,7 @@ export default {
     })
     return {
       ...toRefs(result),
+      gujia,
       typeChange
     }
   }

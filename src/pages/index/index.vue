@@ -130,7 +130,7 @@ export default {
     height: 80rpx;
     box-sizing: border-box;
     padding: 0 20rpx;
-    font-size: 30rpx;
+    font-size: 28rpx;
     display: flex;
     align-items: center;
     color: #666;

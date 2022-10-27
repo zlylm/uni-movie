@@ -1,7 +1,7 @@
 <template>
   <view class="top-title">
     <view class="left">
-      <text class="iconfont icon-back"></text>
+      <text class="iconfont icon-back" @click="back"></text>
       <image class="img" v-if="img" :src="img"></image>
       <text class="title">{{ titleVal }}</text>
     </view>
@@ -22,13 +22,21 @@ export default {
       type: String,
       default: ''
     }
+  },
+  setup() {
+    const back = ()=> {
+      uni.navigateBack(-1)
+    }
+    return {
+      back
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
   .top-title {
     position: fixed;
-    top: 100rpx;
+    top: 0;
     left:0;
     width: 100%;
     height: 100rpx;

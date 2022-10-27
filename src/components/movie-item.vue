@@ -79,7 +79,7 @@ export default {
   }
   .title {
     width: 100%;
-    font-size: 30rpx;
+    font-size: 28rpx;
     display: inline-block;
     overflow:hidden;
     white-space: nowrap;

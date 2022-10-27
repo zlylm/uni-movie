@@ -10,7 +10,8 @@
 		{
 			"path": "pages/classify/index",
 			"style": {
-				"navigationBarTitleText": "分类"
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
 			}
 		},
 		{
@@ -29,7 +30,8 @@
 		{
 			"path": "pages/movie-detail/index",
 			"style": {
-				"navigationBarTitleText": "影片详情"
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom"
 			}
     },
     {

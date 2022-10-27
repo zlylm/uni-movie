@@ -116,10 +116,11 @@ export default {
   &-item {
     border-bottom: solid 1rpx #eee;
     padding: 30rpx 0;
+    font-size: 30rpx;
     text:first-child {
       margin-right: 20rpx;
       color: $uni-color-primary;
-      font-size: 40rpx;
+      font-size: 36rpx;
     }
     text:last-child {
       float: right;

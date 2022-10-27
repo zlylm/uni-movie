@@ -4,7 +4,7 @@
         <view class="page-top" :style="infoStyle">
             <view class="m-info-top">
                 <view class="img-box">
-                    <image class="img" :src="detail.poster.small"></image>
+                    <image class="img" :src="miniImg"></image>
                 </view>
                 
                 <view class="m-info-top-right">
@@ -88,7 +88,9 @@ export default {
         }
       },
       miniImg: function() {
-        return this.detail && this.detail.poster.small
+        if (this.detail && this.detail.poster) {
+          return this.detail.poster.small
+        }
       }
     },
     methods: {
@@ -99,26 +101,22 @@ export default {
            }) 
         },
         renderTop(e) {
-          console.log(e);
-          
           let top = e.scrollTop;
-          if (top > 30 && top < 80) {
-            this.opacity = 0.6
-          } else if (top > 100) {
-            this.opacity = 1
-          } else {
-            this.opacity = 0
+
+          if (top < 201) {
+            this.opacity = (top / 200).toFixed(1)
           }
         }
     },
     onPageScroll(e) {
-      if (this.timer) {
-        clearTimeout(this.timer)
-      }
-      this.timer = setTimeout(() => {
-        this.renderTop(e)
-      }, 120)
+      // if (this.timer) {
+      //   clearTimeout(this.timer)
+      // }
+      // this.timer = setTimeout(() => {
+      //   this.renderTop(e)
+      // }, 120)
 
+      this.renderTop(e)
     }
 }
 </script>
