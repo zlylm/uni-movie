@@ -49,6 +49,7 @@ export default {
     .left {
       display: flex;
       align-items: center;
+      flex: 1;
       .img {
         width: 50rpx;
         height: 68rpx;
