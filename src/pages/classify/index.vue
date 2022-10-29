@@ -1,5 +1,6 @@
 <template>
   <view class="">
+    <diy-tabbar></diy-tabbar>
     <skeleton v-if="gujia"></skeleton>
     <view class="top">
       <type-view :list="categories" :selIndex="1" setKey="category" @change="typeChange"></type-view>

@@ -1,5 +1,6 @@
 <template>
   <view class="film">
+    <diy-tabbar></diy-tabbar>
     <view class="film-box" v-for="(item, index) in listData">
       <view class="content">
         <text class="title">{{ item.title }}</text>
@@ -111,6 +112,9 @@ export default {
     font-size: 26rpx;
     border-radius: 8rpx;
     overflow: hidden;
+    .video {
+      height: 100%;
+    }
     text {
       z-index: 2;
     }
@@ -132,7 +136,7 @@ export default {
       position: absolute;
       top: 20rpx;
       left: 20rpx;
-      font-size: 32rpx;
+      
     }
     .count {
       position: absolute;

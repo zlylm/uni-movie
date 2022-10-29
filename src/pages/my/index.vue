@@ -1,5 +1,6 @@
 <template>
   <view>
+    <diy-tabbar></diy-tabbar>
     <view class="top">
       <view class="tou">
         <image class="img" src="https://test-h5.ixook.com/img/logo.3572ff19.png"></image>

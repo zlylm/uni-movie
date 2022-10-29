@@ -1,6 +1,6 @@
 <template>
   <view class="container">
-    <!-- <Skeleton v-if="gujia"></Skeleton> -->
+    <diy-tabbar></diy-tabbar>
     <SkeletonTwo v-if="gujia"></SkeletonTwo>
     <view class="top-bg">
       <view class="mengban"></view>
@@ -49,14 +49,13 @@
 import { homeAllData } from "@/api/index";
 import MovieBox from "@/components/movie-box.vue";
 import MovieItem from "@/components/movie-item.vue";
-import Skeleton from "./components/skeleton.vue";
 import SkeletonTwo from "./components/skeleton-two.vue";
 export default {
   components: {
     MovieBox,
     MovieItem,
-    Skeleton,
-    SkeletonTwo
+    SkeletonTwo,
+   
   },
   data() {
     return {
@@ -76,7 +75,12 @@ export default {
         { label: '奖项', icon: 'icon-trophy' },
         { label: '那年今日', icon: 'icon-date' },
       ],
-      
+      selected: {
+					component: 0,
+					API: 1,
+					extUI: 2,
+					template: 3
+				},
     };
   },
   onLoad() {
@@ -116,7 +120,7 @@ export default {
 .container {
   padding: 30rpx;
   box-sizing: border-box;
-  padding-bottom: 100rpx;
+  padding-bottom: 200rpx;
   height: auto;
   position: relative;
   z-index: 1;
@@ -127,7 +131,7 @@ export default {
     background: rgba(255,255,255);
     border-radius: $uni-border-radius-lg;
     margin-bottom: 20rpx;
-    height: 80rpx;
+    height: 70rpx;
     box-sizing: border-box;
     padding: 0 20rpx;
     font-size: 28rpx;
