@@ -2,7 +2,7 @@
   <view class="movie-box">
     <view class="movie-box-top" v-if="isTop">
       <view class="title">{{ title }}</view>
-      <view class="right">{{ count }}部
+      <view class="right" @click="gotoUrl">{{ count }}部
 
         <text class="iconfont icon-arrow-right"></text>
       </view>
@@ -13,6 +13,7 @@
   </view>
 </template>
 <script>
+import { ref }  from "vue";
 export default {
   props: {
     title: {
@@ -26,6 +27,20 @@ export default {
     isTop: {
       type: Boolean,
       default: true
+    },
+    url: {
+      type: String,
+      default: ""
+    }
+  },
+  setup(props) {
+    const gotoUrl = ()=> {
+      if (props.url && props.url !="") {
+        uni.navigateTo({ url: props.url })
+      }
+    }
+    return {
+      gotoUrl
     }
   }
 }

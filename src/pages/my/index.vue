@@ -5,7 +5,7 @@
       <view class="tou">
         <image class="img" src="https://test-h5.ixook.com/img/logo.3572ff19.png"></image>
       </view>
-      <view>立即登录</view>
+      <view @click="goLogin">立即登录</view>
 
       <view class="user-nav">
         <view v-for="(item, index) in userNavs" :key="index" class="user-nav-item">
@@ -45,8 +45,12 @@ export default {
         { label: '设置', url: '' },
       ]
     })
+    const goLogin = ()=> {
+      uni.navigateTo({ url: '/pages/user/login' })
+    }
     return {
-      ...toRefs(data)
+      ...toRefs(data),
+      goLogin
     }
   }
 }

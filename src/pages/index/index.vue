@@ -31,7 +31,7 @@
         <text>{{ item.label }}</text>
       </view>
     </view>
-    <movie-box title="热门推荐" :count="hotObj.total || 0">
+    <movie-box title="热门推荐" :count="hotObj.total || 0" url="/pages/well-received/index">
       <template v-for="(item, index) in hotObj.data" :key="index">
         <movie-item :detail="item" style="margin-right:20rpx;"></movie-item>
       </template>

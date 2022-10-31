@@ -46,8 +46,8 @@ export default {
   width: 100%;
   background-color: #fff;
   display: flex;
-  font-size: 28rpx;
-  padding: 12rpx 0;
+  font-size: 26rpx;
+  padding: 8rpx 0;
   border-top: solid 1rpx #eee;
   &-item {
     flex: 1;
@@ -64,7 +64,7 @@ export default {
     &>view {
       width: 100%;
       text-align: center;
-      margin-top: 8rpx;
+      margin-top: 6rpx;
     }
   }
 }

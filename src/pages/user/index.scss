@@ -1,0 +1,41 @@
+.page {
+  padding: 60rpx;
+  position: relative;
+}
+.martop-40 {
+  margin-top: 40rpx;
+}
+.con-box {
+  margin-top: 100rpx;
+  .title {
+    font: {
+      size: 50rpx;
+      weight: bold;
+    }
+    margin-bottom: 80rpx;
+  }
+  .input-box {
+    position: relative;
+    .send-code {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      color: $uni-color-primary;
+      font-size: 26rpx;
+      padding: 20rpx;
+      padding-right: 0;
+    }
+  }
+  .btn {
+    border: none;
+    background-color: $uni-color-primary;
+    color: #fff;
+    letter-spacing: 8rpx;
+  }
+  .other {
+    display: flex;
+    justify-content: space-between;
+    font-size: 26rpx;
+  }
+}
