@@ -4,6 +4,7 @@
     v-model="inputVal"
     :type="type"
     :maxlength="maxlength"
+    :focus="focus"
     @input="inputHandle"
     @focus="focusHandle"
     @blur="blurHandle"
@@ -11,7 +12,7 @@
   >
 </template>
 <script>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 export default {
   props: {
     placeholder: {
@@ -28,6 +29,10 @@ export default {
     maxlength: {
       type: String,
       defalut: ""
+    },
+    focus: {
+      type: Boolean,
+      defalut: false
     }
   },
   setup(props, { emit }) {
@@ -45,13 +50,25 @@ export default {
     const blurHandle = e=> {
       isFocus.value = false
     }
+    const initValue = (val) => {
+      inputVal.value = val
+    }
+    watch(
+      () => props.modelValue,
+      (value) => {
+        if (value == "") {
+          inputVal.value = ""
+        }
+      }
+    )
     return {
       inputVal,
       isFocus,
       activeClass,
       inputHandle,
       focusHandle,
-      blurHandle
+      blurHandle,
+      initValue
     };
   }
 };
