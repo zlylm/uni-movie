@@ -1,5 +1,13 @@
 import Request from './request.js';
 import { joinUrlParam } from "@/utils/index";
+import { useStore } from "vuex";
+
+function getToken() {
+  const store = useStore()
+  return {
+    'Authorization': store.state.token
+  }
+}
 
 // 注册
 export function register(param) {
@@ -14,7 +22,7 @@ export function login(param) {
 	return Request({
 		url: '/login',
     method: 'post',
-    param
+    data: param
 	})
 }
 // 图形验证码
@@ -29,5 +37,22 @@ export function code(param) {
 	return Request({
 		url: joinUrlParam(`/code`, param),
     method: 'get',
+	})
+}
+// 个人中心 收藏统计
+export function collectionsCount() {
+	return Request({
+		url: `/user/collections/count`,
+    method: 'get',
+    headers: getToken()
+	})
+}
+
+// user
+export function userinfo() {
+	return Request({
+		url: `/user`,
+    method: 'get',
+    headers: getToken()
 	})
 }

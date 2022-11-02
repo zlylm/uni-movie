@@ -9,7 +9,7 @@
 
       <view class="user-nav">
         <view v-for="(item, index) in userNavs" :key="index" class="user-nav-item">
-          <view>-</view>
+          <view>{{ formatDefValue(tongjiObj[`${item.key}`]) }}</view>
           <view>{{ item.label }}</view>
         </view>
       </view>
@@ -27,15 +27,18 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import { reactive, toRefs, onMounted, computed } from 'vue';
+import { useStore } from 'vuex';
+import { collectionsCount, userinfo } from '@/api/user';
 export default {
   setup() {
+    const store = useStore()
     const data = reactive({
       userNavs: [
-        { key: '1', label: '关注影人' },
-        { key: '1', label: '关注角色' },
-        { key: '1', label: '收藏影评' },
-        { key: '1', label: '收藏视频' },
+        { key: 'actor_count', label: '关注影人' },
+        { key: 'role_count', label: '关注角色' },
+        { key: 'review_count', label: '收藏影评' },
+        { key: 'video_count', label: '收藏视频' },
       ],
       menuList: [
         { label: '意见反馈', url: '' },
@@ -43,14 +46,31 @@ export default {
         { label: '关于项目', url: '' },
         { label: '更新日志', url: '' },
         { label: '设置', url: '' },
-      ]
+      ],
+      tongjiObj: {}
+    })
+    const formatDefValue = computed(() => {
+      return (val) => {
+        return val == 0 ? val : (val || '-')
+      }
     })
     const goLogin = ()=> {
       uni.navigateTo({ url: '/pages/user/login' })
     }
+    onMounted(() => {
+      let { token } = store.state
+      if (token && token!="") {
+        collectionsCount().then(res =>{
+          console.log(res);
+          data.tongjiObj = res
+        })
+      }
+      
+    })
     return {
       ...toRefs(data),
-      goLogin
+      goLogin,
+      formatDefValue
     }
   }
 }
