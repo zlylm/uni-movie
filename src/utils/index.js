@@ -28,3 +28,11 @@ export function debounce(fn, wait) {
     timer = setTimeout(fn, wait)
   }
 }
+
+export function joinUrlParam(urlStr, params) {
+  let url = urlStr + "?"
+  Object.keys(params).forEach(key => {
+    url = url + `${key}=${params[key]}&`
+  })
+  return url
+}

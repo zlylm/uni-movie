@@ -25,7 +25,13 @@ function Request(param = {}) {
 				if (res.statusCode == 200) {
 					if (res.data.code == 200) {
 						resolve(res.data.data)
-					}
+					} else {
+            uni.showToast({
+              icon: 'none',
+              title: res.data.message || '错误'
+            })
+            resolve(null)
+          }
 				}
 			},
 			fail: err => {

@@ -12,7 +12,7 @@
   >
 </template>
 <script>
-import { ref, computed, watch } from "vue";
+import { ref, computed } from "vue";
 export default {
   props: {
     placeholder: {
@@ -53,14 +53,6 @@ export default {
     const initValue = (val) => {
       inputVal.value = val
     }
-    watch(
-      () => props.modelValue,
-      (value) => {
-        if (value == "") {
-          inputVal.value = ""
-        }
-      }
-    )
     return {
       inputVal,
       isFocus,

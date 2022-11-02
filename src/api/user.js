@@ -1,4 +1,5 @@
 import Request from './request.js';
+import { joinUrlParam } from "@/utils/index";
 
 // 注册
 export function register(param) {
@@ -20,6 +21,13 @@ export function login(param) {
 export function captcha(param) {
 	return Request({
 		url: `/captcha`,
+    method: 'get',
+	})
+}
+// 验证图形验证码
+export function code(param) {
+	return Request({
+		url: joinUrlParam(`/code`, param),
     method: 'get',
 	})
 }

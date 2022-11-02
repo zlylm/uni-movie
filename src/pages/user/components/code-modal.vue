@@ -14,16 +14,16 @@
   </view>
 </template>
 <script>
-import { captcha } from "@/api/user";
+import { captcha , code } from "@/api/user";
 import { onBeforeMount, ref, reactive, toRefs, computed, watch } from "vue";
 import BaseInput from "./base-input.vue";
 export default {
-  props: ["modelValue"],
+  props: ["modelValue", "phone"],
   components: {
     BaseInput
   },
   setup(props, { emit }) {
-    const codeDom = ref()
+    const codeDom = ref(null)
     const yzmUrl = ref("")
     const data = reactive({
       mList: Array(4).fill(1),
@@ -41,6 +41,20 @@ export default {
     const exit = e => {
       emit("update:modelValue", false);
     };
+    const yanzhen = async ()=> {
+      let param = {
+        type: 'register',
+        code: data.imgCode,
+        phone: props.phone
+      }
+      let res = await code(param);
+      data.imgCode = ""
+      codeDom.value.initValue("")
+      if (res) {
+        exit()
+        emit("codeSendSuccess")
+      }
+    }
 
     watch(
       () => {
@@ -48,7 +62,7 @@ export default {
       }
       , (code) => {
       if (code.length == 4) {
-        data.imgCode = ""
+        yanzhen()
       }
       
     })
@@ -59,7 +73,8 @@ export default {
       yzmUrl,
       exit,
       codeList,
-      ...toRefs(data)
+      ...toRefs(data),
+      codeDom
     }
   }
 }
