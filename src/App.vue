@@ -59,4 +59,13 @@ uni-scroll-view .uni-scroll-view::-webkit-scrollbar {
 view {
   box-sizing: border-box;
 }
+/* CDN 服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
+@font-face {
+  font-family: "阿里巴巴普惠体 2.0 35 Thin";font-weight: 250;src: url("//at.alicdn.com/wf/webfont/cLhBs68WYnr0/uKBwU0XrBBfJdLWaqSAh8.woff2") format("woff2"),
+  url("//at.alicdn.com/wf/webfont/cLhBs68WYnr0/6StCxWPw66bv5dNdtL9Cl.woff") format("woff");
+  font-display: swap;
+}
+html, body, page {
+  font-family: '阿里巴巴普惠体 2.0 35 Thin';
+}
 </style>
