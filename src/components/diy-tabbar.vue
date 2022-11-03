@@ -13,10 +13,13 @@
 </template>
 <script>
 import { reactive, toRefs } from "vue";
+import { onShow } from "@dcloudio/uni-app";
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 export default {
   setup() {
     const store = useStore();
+    const router = useRouter();
     const data = reactive({
       navList: [
         { label: '首页', url: '/pages/index/index', icon: 'iconfont icon-home' },
@@ -30,6 +33,18 @@ export default {
       uni.switchTab({ url })
       store.commit('setTabbarIndex', index)
     }
+    onShow(() =>{
+      let path = router.currentRoute.value.fullPath
+      if (path == "/") {
+        data.selIndex = 0
+      } else {
+        data.navList.forEach((item, index) => {
+          if (path == item.url) {
+            data.selIndex = index
+          }
+        })
+      }
+    })
     return {
       ...toRefs(data),
       goto

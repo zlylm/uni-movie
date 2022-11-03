@@ -46,11 +46,18 @@ export function collectionsCount() {
 	})
 }
 
-// user
+// 用户信息
 export function userinfoReq() {
 	return Request({
 		url: `/user`,
     method: 'get',
     headers: getToken()
+	})
+}
+// 影人 关注post/取关delete  
+export function collections(params) {
+	return Request({
+		url: `/user/actors/${params.id}/collections`,
+    method: params.method
 	})
 }

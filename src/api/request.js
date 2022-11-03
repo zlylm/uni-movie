@@ -19,7 +19,8 @@ function Request(param = {}) {
       timeout,
       header: {
         ...DEFAULT_HEADER,
-        ...headers
+        ...headers,
+        'Authorization': uni.getStorageSync('token') || ""
       },
       success: res => {
         if (res.statusCode == 200) {
