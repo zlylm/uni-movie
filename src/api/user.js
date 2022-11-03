@@ -1,11 +1,9 @@
 import Request from './request.js';
 import { joinUrlParam } from "@/utils/index";
-import { useStore } from "vuex";
 
 function getToken() {
-  const store = useStore()
   return {
-    'Authorization': store.state.token
+    'Authorization': uni.getStorageSync('token')
   }
 }
 
