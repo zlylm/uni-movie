@@ -57,6 +57,13 @@
 			"style": {
 				"navigationBarTitleText": "注册"
 			}
+    },
+    {
+			"path": "pages/actor-detail/index",
+			"style": {
+        "navigationBarTitleText": "演员信息",
+        "navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {

@@ -61,3 +61,10 @@ export function collections(params) {
     method: params.method
 	})
 }
+// 演员详情
+export function getActorDetail(params) {
+  return Request({
+		url: `/actors/${params.id}`,
+    method: 'get',
+	})
+}
