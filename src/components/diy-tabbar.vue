@@ -64,7 +64,7 @@ export default {
     &>view {
       width: 100%;
       text-align: center;
-      margin-top: 6rpx;
+      margin-top: 2rpx;
     }
   }
 }

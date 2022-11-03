@@ -40,6 +40,7 @@ export default {
       let res = await login(data)
       if (res) {
         store.commit("setToken", 'Bearer ' + res.token)
+        store.dispatch('getUserInfo')
       }
       loginLoading.value = false
       uni.switchTab({

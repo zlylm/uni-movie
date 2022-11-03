@@ -3,9 +3,11 @@
     <diy-tabbar></diy-tabbar>
     <view class="top">
       <view class="tou">
-        <image class="img" src="https://test-h5.ixook.com/img/logo.3572ff19.png"></image>
+        <image v-if="userInfo" class="img" :src="userInfo.avatar"></image>
+        <image v-else class="img" src="https://test-h5.ixook.com/img/logo.3572ff19.png"></image>
       </view>
-      <view @click="goLogin">立即登录</view>
+      <view v-if="userInfo">{{ userInfo.username }}</view>
+      <view v-else @click="goLogin">立即登录</view>
 
       <view class="user-nav">
         <view v-for="(item, index) in userNavs" :key="index" class="user-nav-item">
@@ -28,8 +30,9 @@
 
 <script>
 import { reactive, toRefs, onMounted, computed } from 'vue';
+import { onShow } from "@dcloudio/uni-app";
 import { useStore } from 'vuex';
-import { collectionsCount, userinfo } from '@/api/user';
+import { collectionsCount } from '@/api/user';
 export default {
   setup() {
     const store = useStore()
@@ -54,23 +57,25 @@ export default {
         return val == 0 ? val : (val || '-')
       }
     })
+    const userInfo = computed(() => {
+      return store.state.userInfo
+    })
     const goLogin = ()=> {
       uni.navigateTo({ url: '/pages/user/login' })
     }
-    onMounted(() => {
+    onShow(() => {
       let { token } = store.state
       if (token && token!="") {
         collectionsCount().then(res =>{
-          console.log(res);
           data.tongjiObj = res
         })
       }
-      
     })
     return {
       ...toRefs(data),
       goLogin,
-      formatDefValue
+      formatDefValue,
+      userInfo
     }
   }
 }
@@ -93,6 +98,7 @@ export default {
     border-radius: 50%;
     background-color: #fff;
     margin-right: 30rpx;
+    overflow: hidden;
     .img {
       width: 100%;
       height: 100%;

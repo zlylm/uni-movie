@@ -15,7 +15,7 @@
         <base-input v-model="code" maxlength="4" placeholder="请输入验证码"></base-input>
       </view>
       <view class="martop-40">
-        <button class="btn" @click="login">注册</button>
+        <button class="btn" @click="login" :loading="loading" :disabled="loading">注册</button>
       </view>
       <view class="other martop-40">
         <text @click="accountLogin">账号登录</text>
@@ -35,6 +35,7 @@ export default {
     CodeModal
   },
   setup() {
+    const loading = ref(false);
     const codeModal = ref(false);
     const seconds = ref(null)
     const userinfo = reactive({
@@ -43,11 +44,11 @@ export default {
       code: ""
     })
     const login = async ()=> {
-      console.log(toRaw(userinfo));
       let data = toRaw(userinfo)
+      loading.value = true
       let res = await register(data)
+      loading.value = false
       if (res) {
-        console.log(res);
         uni.showToast({
           icon: 'none',
           title: "注册成功"
@@ -92,7 +93,8 @@ export default {
       codeModal,
       login,
       showCode,
-      seconds
+      seconds,
+      loading
     }
   }
 }

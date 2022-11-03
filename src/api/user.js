@@ -49,7 +49,7 @@ export function collectionsCount() {
 }
 
 // user
-export function userinfo() {
+export function userinfoReq() {
 	return Request({
 		url: `/user`,
     method: 'get',
